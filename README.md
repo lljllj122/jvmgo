@@ -9,7 +9,11 @@
 
 ## About <a name = "about"></a>
 
-This is a toy JVM implemented by Go.
+This is a toy JVM implemented in Go. 
+
+A super helpful homework to learn JVM and Go together.
+
+Credit to [zxh0](https://github.com/zxh0/jvm.go) and his excellent book [《自己动手写Java虚拟机》](https://item.jd.com/11935272.html)
 
 
 
