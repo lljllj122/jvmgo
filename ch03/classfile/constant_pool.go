@@ -6,19 +6,19 @@ type ConstantPool struct {
 
 func readConstantPool(reader *ClassReader) *ConstantPool {
 	constantPoolCount := int(reader.readUint16())
-	infos := make([]ConstantInfo, constantPoolCount)
+	pool := &ConstantPool{
+		constantInfos: make([]ConstantInfo, constantPoolCount),
+	}
 	// i start from 1; 0 is not a valid index in constant pool
 	for i := 1; i < constantPoolCount; i++ {
-		infos[i] = readConstantInfo(reader)
-		switch infos[i].(type) {
+		pool.constantInfos[i] = readConstantInfo(reader, pool)
+		switch pool.constantInfos[i].(type) {
 		// Long and Double constant info occoupy 2 slots in pool
 		case *ConstantLongInfo, *ConstantDoubleInfo:
 			i++
 		}
 	}
-	return &ConstantPool{
-		constantInfos: infos,
-	}
+	return pool
 }
 
 // get a ConstantInfo item by index from the pool
