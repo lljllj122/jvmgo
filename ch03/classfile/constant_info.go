@@ -22,35 +22,6 @@ type ConstantInfo interface {
 	readInfo(reader *ClassReader)
 }
 
-type ConstantStringInfo struct {
-	pool *ConstantPool
-}
-
-func (info *ConstantStringInfo) readInfo(reader *ClassReader) {
-	panic("not implemented") // TODO: Implement
-}
-
-type ConstantClassInfo struct {
-	tag       u1
-	nameIndex u2
-	pool      *ConstantPool
-}
-
-func (info *ConstantClassInfo) readInfo(reader *ClassReader) {
-	panic("not implemented") // TODO: Implement
-}
-
-// ConstantNameAndTypeInfo is composite of name and descriptor indecies in constant pool
-type ConstantNameAndTypeInfo struct {
-	tag             u1
-	nameIndex       u2
-	descriptorIndex u2
-}
-
-func (info *ConstantNameAndTypeInfo) readInfo(reader *ClassReader) {
-	panic("not implemented") // TODO: Implement
-}
-
 type ConstantMethodTypeInfo struct {
 }
 
