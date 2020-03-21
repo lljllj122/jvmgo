@@ -6,14 +6,16 @@ package classfile
    u2 name_index;
    u2 descriptor_index;
 }”
-ConstantNameAndTypeInfo is composite of name and descriptor indecies in constant pool
+The CONSTANT_NameAndType_info structure is used to represent a field or method,
+without indicating which class or interface type it belongs to.
+ConstantNameAndTypeInfo is composite of name and descriptor indecies to UTF8_info items in constant pool
 */
 type ConstantNameAndTypeInfo struct {
-	tag             u1
 	nameIndex       u2
 	descriptorIndex u2
 }
 
 func (info *ConstantNameAndTypeInfo) readInfo(reader *ClassReader) {
-	panic("not implemented") // TODO: Implement
+	info.nameIndex = reader.readUint16()
+	info.descriptorIndex = reader.readUint16()
 }

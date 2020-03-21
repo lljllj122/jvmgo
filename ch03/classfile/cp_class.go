@@ -6,7 +6,7 @@ package classfile
    u2 name_index;
 }”
 
-represents referecen of class and interface
+represents represent a class or an interface:
 Class_info item contains a index to another UTF8_info item to represent the class name
 */
 type ConstantClassInfo struct {

@@ -26,7 +26,7 @@ type ConstantMethodTypeInfo struct {
 }
 
 func (info *ConstantMethodTypeInfo) readInfo(reader *ClassReader) {
-	panic("not implemented") // TODO: Implement
+
 }
 
 type ConstantMethodHandleInfo struct {
@@ -43,16 +43,10 @@ func (info *ConstantInvokeDynamicInfo) readInfo(reader *ClassReader) {
 	panic("not implemented") // TODO: Implement
 }
 
-type ConstantMemberRefInfo struct {
-	pool *ConstantPool
-}
-
-func (info *ConstantMemberRefInfo) readInfo(reader *ClassReader) {
-	panic("not implemented") // TODO: Implement
-}
-
 func readConstantInfo(reader *ClassReader, pool *ConstantPool) ConstantInfo {
-	return nil
+	tag := reader.readUint8()
+	constantInfo := newConstantInfo(tag, pool)
+	return constantInfo
 }
 
 func newConstantInfo(tag u1, pool *ConstantPool) ConstantInfo {
