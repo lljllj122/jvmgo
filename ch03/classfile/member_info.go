@@ -7,7 +7,7 @@ type MemberInfo struct {
 	accessFlag      u2
 	nameIndex       u2 // Index of the member name in constant pool;
 	descriptorIndex u2 // Index of the descriptor in constant pool; A descriptor is a string representing the type of a field or method.
-	attributes      []*AttributeInfo
+	attributes      []AttributeInfo
 }
 
 func readMembers(reader *ClassReader, constantPool *ConstantPool) []*MemberInfo {

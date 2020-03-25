@@ -17,6 +17,9 @@ CONSTANT_InterfaceMethodref_info {
 	u2 class_index;
 	u2 name_and_type_index;
 }
+
+name of the class
+type & name of the method/field
 */
 type ConstantMemberRefInfo struct {
 	pool             *ConstantPool
