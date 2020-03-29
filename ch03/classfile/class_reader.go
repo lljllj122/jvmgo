@@ -46,7 +46,7 @@ func (cr *ClassReader) readUint16Table() []uint16 {
 	// the header of table defines number of items in table
 	n := cr.readUint16()
 	u2s := make([]u2, n)
-	for i, _ := range u2s {
+	for i := range u2s {
 		u2s[i] = cr.readUint16()
 	}
 	return u2s

@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"jvmgo/ch02/classpath"
+	"jvmgo/ch03/classfile"
+	"jvmgo/ch03/classpath"
 	"strings"
 )
 
@@ -18,15 +19,31 @@ func main() {
 }
 
 func startJvm(cmd *Cmd) {
-	cp := classpath.Parse(cmd.XjreOption, cmd.classPathOption)
+	classPath := classpath.Parse(cmd.XjreOption, cmd.classPathOption)
 	fmt.Printf("class:%s	classpath:%s	args:%v\n", cmd.class, cmd.classPathOption, cmd.args)
 	// convert the dot formatted class name to the slah formatted relative path
 	className := strings.Replace(cmd.class, ".", "/", -1)
-	data, _, err := cp.ReadClass(className)
+	data, _, err := classPath.ReadClass(className)
 
 	if err != nil {
 		fmt.Printf("Cannot find or load class: %v\n", cmd.class)
 	}
 
 	fmt.Printf("class data: %v\n", data)
+}
+
+func loadClass(className string, classPath *classpath.ClassPath) *classfile.ClassFile {
+	classData, _, err := classPath.ReadClass(className)
+	if err != nil {
+		panic(err)
+	}
+	classFile, err := classfile.ParseClass(classData)
+	if err != nil {
+		panic(err)
+	}
+	return classFile
+}
+
+func printClassInfo(classFile *classfile.ClassFile) {
+	// fmt.Printf("version: %v.%v\n", classFile.)
 }

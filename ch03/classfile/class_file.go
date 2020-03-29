@@ -24,44 +24,53 @@ ClassFile {
 ClassFile - represents structure of class file
 */
 type ClassFile struct {
-	magic        u4
-	minorVersion u2
-	majorVersion u2
-	accessFlags  u2
-	constantPool *ConstantPool
-	thisClass    u2
-	superClass   u2
-	interfaces   []u2
-	fields       []*MemberInfo
-	methods      []*MemberInfo
-	attributes   []AttributeInfo
+	magic                 u4
+	minorVersion          u2
+	majorVersion          u2
+	accessFlags           u2
+	constantPool          *ConstantPool
+	thisClassNameIndex    u2
+	superClassNameIndex   u2
+	interfaceNameIndecies []u2
+	fields                []*MemberInfo
+	methods               []*MemberInfo
+	attributes            []AttributeInfo
+}
+
+func (cf *ClassFile) read(reader *ClassReader) {
+	// init class file content
+	cf.readAndCheckMagic(reader)
+	cf.readAndCheckVersion(reader)
+	cf.constantPool = readConstantPool(reader)
+	cf.accessFlags = reader.readUint16()
+	cf.thisClassNameIndex = reader.readUint16()
+	cf.superClassNameIndex = reader.readUint16()
+	cf.interfaceNameIndecies = reader.readUint16Table()
+	cf.fields = readMembers(reader, cf.constantPool)
+	cf.methods = readMembers(reader, cf.constantPool)
+	cf.attributes = readAttributes(reader, cf.constantPool)
 }
 
 // ClassName : Get the name of class
 func (cf *ClassFile) ClassName() string {
-	// return cf.constantPool.getClassName(cf.thisClass)
-	return ""
+	return cf.constantPool.getClassName(cf.thisClassNameIndex)
 }
 
 // SuperClassName : Get the super class name
 func (cf *ClassFile) SuperClassName() string {
-	// if cf.superClass > 0 {
-	// 	return cf.constantPool.getClassName(cf.superClass)
-	// }
+	if cf.superClassNameIndex > 0 {
+		return cf.constantPool.getClassName(cf.superClassNameIndex)
+	}
 	return ""
 }
 
 // InterfaceNames : Get the interface names
 func (cf *ClassFile) InterfaceNames() []string {
-	interfaceNames := make([]string, len(cf.interfaces))
-	// for i, interface := range cf.interfaces {
-	// 	inteinterfaceNames[i] = cf.constantPool.getClassName(interface)
-	// }
+	interfaceNames := make([]string, len(cf.interfaceNameIndecies))
+	for i, interfaceIndex := range cf.interfaceNameIndecies {
+		interfaceNames[i] = cf.constantPool.getClassName(interfaceIndex)
+	}
 	return interfaceNames
-}
-
-func (cf *ClassFile) read(reader *ClassReader) {
-	// init class file content
 }
 
 func (cf *ClassFile) readAndCheckMagic(reader *ClassReader) {
