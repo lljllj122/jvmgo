@@ -23,13 +23,8 @@ func startJvm(cmd *Cmd) {
 	fmt.Printf("class:%s	classpath:%s	args:%v\n", cmd.class, cmd.classPathOption, cmd.args)
 	// convert the dot formatted class name to the slah formatted relative path
 	className := strings.Replace(cmd.class, ".", "/", -1)
-	data, _, err := classPath.ReadClass(className)
-
-	if err != nil {
-		fmt.Printf("Cannot find or load class: %v\n", cmd.class)
-	}
-
-	fmt.Printf("class data: %v\n", data)
+	classFile := loadClass(className, classPath)
+	printClassInfo(classFile)
 }
 
 func loadClass(className string, classPath *classpath.ClassPath) *classfile.ClassFile {
@@ -45,5 +40,19 @@ func loadClass(className string, classPath *classpath.ClassPath) *classfile.Clas
 }
 
 func printClassInfo(classFile *classfile.ClassFile) {
-	// fmt.Printf("version: %v.%v\n", classFile.)
+	fmt.Printf("version: %v.%v\n", classFile.MajorVersion(), classFile.MinorVersion())
+	fmt.Printf("constants count: %v\n", classFile.ConstantPool().Size())
+	fmt.Printf("access flags: %v\n", classFile.AccessFlags())
+	fmt.Printf("this class: %v\n", classFile.ClassName())
+	fmt.Printf("super class: %v\n", classFile.SuperClassName())
+	fmt.Printf("interfaces: %v\n", classFile.InterfaceNames())
+	fmt.Printf("fields count: %v\n", len(classFile.Fields()))
+	for _, f := range classFile.Fields() {
+		fmt.Println(f.Name())
+	}
+
+	fmt.Printf("methods count: %v\n", len(classFile.Methods()))
+	for _, m := range classFile.Methods() {
+		fmt.Println(m.Name())
+	}
 }

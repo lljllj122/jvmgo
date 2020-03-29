@@ -126,7 +126,7 @@ func (cf *ClassFile) readAndCheckVersion(reader *ClassReader) {
 }
 
 // ParseClass : Parse the input byte data into ClassFile entity
-func ParseClass(classData []byte) (cf *ClassFile, err error) {
+func ParseClass(classData []byte) (classFile *ClassFile, err error) {
 	defer func() {
 		if r := recover(); r != nil {
 			var ok bool
@@ -136,7 +136,8 @@ func ParseClass(classData []byte) (cf *ClassFile, err error) {
 			}
 		}
 	}()
-	// cr := &ClassReader{classData}
-	cf = &ClassFile{}
+	reader := &ClassReader{classData}
+	classFile = &ClassFile{}
+	classFile.read(reader)
 	return
 }
