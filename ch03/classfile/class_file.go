@@ -24,17 +24,17 @@ ClassFile {
 ClassFile - represents structure of class file
 */
 type ClassFile struct {
-	magic                 u4
-	minorVersion          u2
-	majorVersion          u2
-	accessFlags           u2
-	constantPool          *ConstantPool
-	thisClassNameIndex    u2
-	superClassNameIndex   u2
-	interfaceNameIndecies []u2
-	fields                []*MemberInfo
-	methods               []*MemberInfo
-	attributes            []AttributeInfo
+	magic             u4
+	minorVersion      u2
+	majorVersion      u2
+	accessFlags       u2
+	constantPool      *ConstantPool
+	thisClassIndex    u2
+	superClassIndex   u2
+	interfaceIndecies []u2
+	fields            []*MemberInfo
+	methods           []*MemberInfo
+	attributes        []AttributeInfo
 }
 
 func (cf *ClassFile) read(reader *ClassReader) {
@@ -43,34 +43,62 @@ func (cf *ClassFile) read(reader *ClassReader) {
 	cf.readAndCheckVersion(reader)
 	cf.constantPool = readConstantPool(reader)
 	cf.accessFlags = reader.readUint16()
-	cf.thisClassNameIndex = reader.readUint16()
-	cf.superClassNameIndex = reader.readUint16()
-	cf.interfaceNameIndecies = reader.readUint16Table()
+	cf.thisClassIndex = reader.readUint16()
+	cf.superClassIndex = reader.readUint16()
+	cf.interfaceIndecies = reader.readUint16Table()
 	cf.fields = readMembers(reader, cf.constantPool)
 	cf.methods = readMembers(reader, cf.constantPool)
 	cf.attributes = readAttributes(reader, cf.constantPool)
 }
 
+func (cf *ClassFile) MinorVersion() u2 {
+	return cf.minorVersion
+}
+
+func (cf *ClassFile) MajorVersion() u2 {
+	return cf.majorVersion
+}
+
+func (cf *ClassFile) ConstantPool() *ConstantPool {
+	return cf.constantPool
+}
+
+func (cf *ClassFile) AccessFlags() u2 {
+	return cf.accessFlags
+}
+
 // ClassName : Get the name of class
 func (cf *ClassFile) ClassName() string {
-	return cf.constantPool.getClassName(cf.thisClassNameIndex)
+	return cf.constantPool.getClassName(cf.thisClassIndex)
 }
 
 // SuperClassName : Get the super class name
 func (cf *ClassFile) SuperClassName() string {
-	if cf.superClassNameIndex > 0 {
-		return cf.constantPool.getClassName(cf.superClassNameIndex)
+	if cf.superClassIndex > 0 {
+		return cf.constantPool.getClassName(cf.superClassIndex)
 	}
 	return ""
 }
 
 // InterfaceNames : Get the interface names
 func (cf *ClassFile) InterfaceNames() []string {
-	interfaceNames := make([]string, len(cf.interfaceNameIndecies))
-	for i, interfaceIndex := range cf.interfaceNameIndecies {
+	interfaceNames := make([]string, len(cf.interfaceIndecies))
+	for i, interfaceIndex := range cf.interfaceIndecies {
 		interfaceNames[i] = cf.constantPool.getClassName(interfaceIndex)
 	}
 	return interfaceNames
+}
+
+func (cf *ClassFile) Fields() []*MemberInfo {
+	return cf.fields
+}
+
+func (cf *ClassFile) Methods() []*MemberInfo {
+	return cf.methods
+}
+
+func (cf *ClassFile) Attributes() []AttributeInfo {
+	return cf.Attributes()
 }
 
 func (cf *ClassFile) readAndCheckMagic(reader *ClassReader) {

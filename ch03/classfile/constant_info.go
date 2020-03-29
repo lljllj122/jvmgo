@@ -25,6 +25,7 @@ type ConstantInfo interface {
 func readConstantInfo(reader *ClassReader, pool *ConstantPool) ConstantInfo {
 	tag := reader.readUint8()
 	constantInfo := newConstantInfo(tag, pool)
+	constantInfo.readInfo(reader)
 	return constantInfo
 }
 
