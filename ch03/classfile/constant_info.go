@@ -1,5 +1,7 @@
 package classfile
 
+import "fmt"
+
 const (
 	Utf8Tag               = 1
 	IntegerTag            = 3
@@ -60,6 +62,6 @@ func newConstantInfo(tag u1, pool *ConstantPool) ConstantInfo {
 	case InvokeDyanmicTag:
 		return &ConstantInvokeDynamicInfo{}
 	default:
-		panic("java.lang.ClassFormatError: invalid constant pool tag.")
+		panic(fmt.Sprintf("java.lang.ClassFormatError: invalid constant pool tag. %v", tag))
 	}
 }

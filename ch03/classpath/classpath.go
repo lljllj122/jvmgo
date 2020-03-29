@@ -17,7 +17,6 @@ type ClassPath struct {
 func Parse(jreOption string, classpathOption string) *ClassPath {
 	cp := &ClassPath{}
 	cp.initBootAndExtClassPath(jreOption)
-	// TODO: ext class path
 	cp.initUserClassPath(classpathOption)
 	return cp
 }
@@ -52,7 +51,7 @@ func (cp *ClassPath) initBootAndExtClassPath(jreOption string) {
 // parse the input of option -classpath/-cp
 func (cp *ClassPath) initUserClassPath(classpathOption string) {
 	// if no classpath option is passed in -classpath/-cp, we will use the current dir as default
-	if classpathOption != "" {
+	if classpathOption == "" {
 		classpathOption = "."
 	}
 	cp.userClassPathEntry = newDirEntry(classpathOption)
