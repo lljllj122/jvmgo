@@ -8,7 +8,8 @@ ClassFile {
 	u2 minor_version;
 	u2 major_version;
 	u2 constant_pool_count;
-	cp_info constant_pool[constant_pool_count-1]; u2 access_flags;
+	cp_info constant_pool[constant_pool_count-1];
+	u2 access_flags;
 	u2 this_class;
 	u2 super_class;
 	u2 interfaces_count;
@@ -27,8 +28,8 @@ type ClassFile struct {
 	magic             u4
 	minorVersion      u2
 	majorVersion      u2
-	accessFlags       u2
 	constantPool      *ConstantPool
+	accessFlags       u2
 	thisClassIndex    u2
 	superClassIndex   u2
 	interfaceIndecies []u2
@@ -116,13 +117,13 @@ func (cf *ClassFile) readAndCheckVersion(reader *ClassReader) {
 	switch cf.majorVersion {
 	case 45:
 		return
-	case 46, 47, 48, 49, 50, 51, 52:
+	case 46, 47, 48, 49, 50, 51, 52, 57:
 		if cf.minorVersion == 0 {
 			return
 		}
 	}
 
-	panic("java.lang.UnsupportedClassVersionError")
+	panic(fmt.Sprintf("java.lang.UnsupportedClassVersionError : %v:%v", cf.MajorVersion(), cf.MinorVersion()))
 }
 
 // ParseClass : Parse the input byte data into ClassFile entity

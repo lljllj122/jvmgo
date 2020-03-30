@@ -38,7 +38,7 @@ func newConstantInfo(tag u1, pool *ConstantPool) ConstantInfo {
 	case FloatTag:
 		return &ConstantFloatInfo{}
 	case LongTag:
-		return &ConstantFloatInfo{}
+		return &ConstantLongInfo{}
 	case DoubleTag:
 		return &ConstantDoubleInfo{}
 	case Utf8Tag:
@@ -62,6 +62,6 @@ func newConstantInfo(tag u1, pool *ConstantPool) ConstantInfo {
 	case InvokeDyanmicTag:
 		return &ConstantInvokeDynamicInfo{}
 	default:
-		panic(fmt.Sprintf("java.lang.ClassFormatError: invalid constant pool tag. %v", tag))
+		panic(fmt.Sprintf("java.lang.ClassFormatError: invalid constant pool tag. %X", tag))
 	}
 }
