@@ -99,7 +99,7 @@ func (cf *ClassFile) Methods() []*MemberInfo {
 }
 
 func (cf *ClassFile) Attributes() []AttributeInfo {
-	return cf.Attributes()
+	return cf.attributes
 }
 
 func (cf *ClassFile) readAndCheckMagic(reader *ClassReader) {
@@ -128,15 +128,15 @@ func (cf *ClassFile) readAndCheckVersion(reader *ClassReader) {
 
 // ParseClass : Parse the input byte data into ClassFile entity
 func ParseClass(classData []byte) (classFile *ClassFile, err error) {
-	defer func() {
-		if r := recover(); r != nil {
-			var ok bool
-			err, ok = r.(error)
-			if !ok {
-				err = fmt.Errorf("%v", r)
-			}
-		}
-	}()
+	// defer func() {
+	// 	if r := recover(); r != nil {
+	// 		var ok bool
+	// 		err, ok = r.(error)
+	// 		if !ok {
+	// 			err = fmt.Errorf("%v", r)
+	// 		}
+	// 	}
+	// }()
 	reader := &ClassReader{classData}
 	classFile = &ClassFile{}
 	classFile.read(reader)

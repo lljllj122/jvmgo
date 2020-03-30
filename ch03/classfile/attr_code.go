@@ -35,7 +35,7 @@ func (attr *CodeAttribute) readInfo(reader *ClassReader) {
 	codeLength := reader.readUint32()
 	attr.code = reader.readBytes(codeLength)
 	attr.exceptionTable = readExceptionTable(reader)
-	// attr.attributes =
+	attr.attributes = readAttributes(reader, attr.constantPool)
 }
 
 type ExceptionTableEntry struct {

@@ -55,4 +55,9 @@ func printClassInfo(classFile *classfile.ClassFile) {
 	for _, m := range classFile.Methods() {
 		fmt.Println(m.Name())
 	}
+
+	fmt.Printf("attributes count: %v\n", len(classFile.Attributes()))
+	for _, attr := range classFile.Attributes() {
+		fmt.Printf("%T\n", attr)
+	}
 }
