@@ -69,3 +69,11 @@ func (localVars LocalVars) GetDouble(index uint) float64 {
 	lowBits := localVars[index+1].bits
 	return math.Float64frombits(uint64(highBits)<<32 | uint64(lowBits))
 }
+
+func (localVars LocalVars) SetRef(index uint, ref *Object) {
+	localVars[index].ref = ref
+}
+
+func (localVars LocalVars) GetRef(index uint) *Object {
+	return localVars[index].ref
+}
