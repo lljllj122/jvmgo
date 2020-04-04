@@ -5,6 +5,7 @@ import "jvmgo/ch05/rtda"
 type Instruction interface {
 	// Load operand from the bytecode
 	FetchOperand(reader *BytecodeReader)
+	// Execute the instruction in stack frame
 	Execute(frame *rtda.StackFrame)
 }
 

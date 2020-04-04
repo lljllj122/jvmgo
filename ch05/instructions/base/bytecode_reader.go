@@ -19,11 +19,11 @@ func (reader *BytecodeReader) ReadByte() byte {
 func (reader *BytecodeReader) ReadUint16() uint16 {
 	high := reader.ReadByte()
 	low := reader.ReadByte()
-	return uint16(high<<8) | uint16(low)
+	return uint16(high)<<8 | uint16(low)
 }
 
 func (reader *BytecodeReader) ReadUint32() uint32 {
 	high := reader.ReadUint16()
 	low := reader.ReadUint16()
-	return uint32(high<<16) | uint32(low)
+	return uint32(high)<<16 | uint32(low)
 }

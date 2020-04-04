@@ -17,3 +17,7 @@ func NewStackFrame(maxLocals, maxStack uint) *StackFrame {
 		operandStack: newOperandStack(maxStack),
 	}
 }
+
+func (stack *StackFrame) OperandStack() *OperandStack {
+	return stack.operandStack
+}
