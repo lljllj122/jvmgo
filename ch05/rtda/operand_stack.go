@@ -11,7 +11,7 @@ type OperandStack struct {
 	slots []Slot
 }
 
-func newOperandStack(maxStack uint) *OperandStack {
+func newOperandStack(maxStack uint8) *OperandStack {
 	// max size of op stack is defined during compiling.
 	if maxStack > 0 {
 		return &OperandStack{

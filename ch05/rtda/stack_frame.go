@@ -21,3 +21,7 @@ func NewStackFrame(maxLocals, maxStack uint) *StackFrame {
 func (stack *StackFrame) OperandStack() *OperandStack {
 	return stack.operandStack
 }
+
+func (stack *StackFrame) LocalVars() *LocalVars {
+	return stack.LocalVars()
+}
