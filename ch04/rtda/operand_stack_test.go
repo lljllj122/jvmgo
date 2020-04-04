@@ -1,9 +1,15 @@
 package rtda
 
 import (
-	"jvmgo/ch04/test/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
+
+func TestNil(t *testing.T) {
+	opstack := newOperandStack(0)
+	assert.Nil(t, opstack)
+}
 
 func TestOpStack(t *testing.T) {
 	opStack := newOperandStack(10)

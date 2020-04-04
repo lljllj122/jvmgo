@@ -1,10 +1,16 @@
 package rtda
 
 import (
-	"jvmgo/ch04/test/assert"
 	"math/rand"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
+
+func TestNilLocalVar(t *testing.T) {
+	localVars := newLocalVars(0)
+	assert.Nil(t, localVars, "")
+}
 
 func TestInt(t *testing.T) {
 	localVars := newLocalVars(10)
