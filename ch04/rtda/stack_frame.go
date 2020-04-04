@@ -6,15 +6,14 @@ A frame is destroyed when its method invocation completes,
 whether that completion is normal or abrupt
 */
 type StackFrame struct {
-	lower *StackFrame
-	// Each frame contains an array of variables known as its local variables.
-	// localVars *
-	// operandStack
+	lowerFrame   *StackFrame
+	localVars    LocalVars
+	operandStack *OperandStack
 }
 
 func NewStackFrame(maxLocals, maxStack uint) *StackFrame {
 	return &StackFrame{
-		// localVars
-		// operandStack
+		localVars:    newLocalVars(maxLocals),
+		operandStack: newOperandStack(maxStack),
 	}
 }

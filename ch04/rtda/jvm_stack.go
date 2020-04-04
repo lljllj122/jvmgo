@@ -21,7 +21,7 @@ func (stack *JvmStack) push(frame *StackFrame) {
 	}
 
 	if stack.topFrame != nil {
-		frame.lower = stack.topFrame
+		frame.lowerFrame = stack.topFrame
 	}
 	stack.topFrame = frame
 	stack.size++
@@ -29,9 +29,9 @@ func (stack *JvmStack) push(frame *StackFrame) {
 
 func (stack *JvmStack) pop() *StackFrame {
 	output := stack.topFrame
-	stack.topFrame = output.lower
+	stack.topFrame = output.lowerFrame
 	stack.size--
-	output.lower = nil
+	output.lowerFrame = nil
 	return output
 }
 

@@ -117,7 +117,7 @@ func (cf *ClassFile) readAndCheckVersion(reader *ClassReader) {
 	switch cf.majorVersion {
 	case 45:
 		return
-	case 46, 47, 48, 49, 50, 51, 52, 57:
+	case 46, 47, 48, 49, 50, 51, 52:
 		if cf.minorVersion == 0 {
 			return
 		}
