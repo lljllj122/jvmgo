@@ -11,7 +11,7 @@ type StackFrame struct {
 	operandStack *OperandStack
 }
 
-func NewStackFrame(maxLocals, maxStack uint) *StackFrame {
+func NewStackFrame(maxLocals, maxStack uint8) *StackFrame {
 	return &StackFrame{
 		localVars:    newLocalVars(maxLocals),
 		operandStack: newOperandStack(maxStack),

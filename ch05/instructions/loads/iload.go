@@ -5,9 +5,7 @@ import (
 	"jvmgo/ch05/rtda"
 )
 
-/*
-Load int variable from LocalVar table and push to opstack
-*/
+// Load Int variable from LocalVar table and push to opstack
 func _iload(frame *rtda.StackFrame, index uint8) {
 	val := frame.LocalVars().GetInt(index)
 	frame.OperandStack().PushInt(val)
