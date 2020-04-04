@@ -4,7 +4,7 @@ import "jvmgo/ch05/rtda"
 
 type Instruction interface {
 	// Load operand from the bytecode
-	FetchOperand(reader *BytecodeReader)
+	FetchOperands(reader *BytecodeReader)
 	// Execute the instruction in stack frame
 	Execute(frame *rtda.StackFrame)
 }
@@ -12,7 +12,7 @@ type Instruction interface {
 type NoOperandInstruction struct {
 }
 
-func (ins *NoOperandInstruction) FetchOperand(reader *BytecodeReader) {
+func (ins *NoOperandInstruction) FetchOperands(reader *BytecodeReader) {
 	// Nothing
 }
 
@@ -25,7 +25,7 @@ type BranchInstruction struct {
 	Offset int16
 }
 
-func (ins *BranchInstruction) FetchOperand(reader *BytecodeReader) {
+func (ins *BranchInstruction) FetchOperands(reader *BytecodeReader) {
 	ins.Offset = int16(reader.ReadUint32())
 }
 
@@ -34,7 +34,7 @@ type Index8Instruction struct {
 	Index uint8
 }
 
-func (ins *Index8Instruction) FetchOperand(reader *BytecodeReader) {
+func (ins *Index8Instruction) FetchOperands(reader *BytecodeReader) {
 	ins.Index = uint8(reader.ReadByte())
 }
 
@@ -46,6 +46,6 @@ type Index16Instruction struct {
 	Index uint16
 }
 
-func (ins *Index16Instruction) FetchOperand(reader *BytecodeReader) {
+func (ins *Index16Instruction) FetchOperands(reader *BytecodeReader) {
 	ins.Index = uint16(reader.ReadUint16())
 }
