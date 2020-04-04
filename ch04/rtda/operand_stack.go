@@ -6,11 +6,13 @@ import "math"
 The maximum depth of the operand stack of a frame is determined at compile-time.
 */
 type OperandStack struct {
-	size  uint
+	size uint
+	// Stored as value, not pointer
 	slots []Slot
 }
 
 func newOperandStack(maxStack uint) *OperandStack {
+	// max size of op stack is defined during compiling.
 	if maxStack > 0 {
 		return &OperandStack{
 			slots: make([]Slot, maxStack),

@@ -19,6 +19,7 @@ type Slot struct {
 type LocalVars []Slot
 
 func newLocalVars(maxLocals uint) LocalVars {
+	// size of local variable is defined during compiling.
 	if maxLocals > 0 {
 		return make([]Slot, maxLocals)
 	}

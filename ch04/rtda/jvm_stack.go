@@ -16,7 +16,7 @@ func newJvmStack(maxSize uint) *JvmStack {
 }
 
 func (stack *JvmStack) push(frame *StackFrame) {
-	if stack.size > stack.maxSize {
+	if stack.size >= stack.maxSize {
 		panic("java.lang.StackOverFlowError")
 	}
 
