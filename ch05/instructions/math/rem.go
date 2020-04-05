@@ -3,6 +3,7 @@ package math
 import (
 	"jvmgo/ch05/instructions/base"
 	"jvmgo/ch05/rtda"
+	"math"
 )
 
 /*
@@ -45,10 +46,42 @@ func (inst *LREM) Execute(frame *rtda.StackFrame) {
 	stack.PushLong(res)
 }
 
+/*
+FREM - Remainder float
+..., value1, value2 →
+..., value1 % value2
+*/
 type FREM struct {
 	base.NoOperandInstruction
 }
 
+func (inst *FREM) Execute(frame *rtda.StackFrame) {
+	stack := frame.OperandStack()
+	v2 := stack.PopFloat()
+	if v2 == 0 {
+		panic("java.lang.ArithmeticException: / by zero.")
+	}
+	v1 := stack.PopFloat()
+	res := float32(math.Mod(float64(v1), float64(v2)))
+	stack.PushFloat(res)
+}
+
+/*
+DREM - Remainder double
+..., value1, value2 →
+..., value1 % value2
+*/
 type DREM struct {
 	base.NoOperandInstruction
+}
+
+func (inst *DREM) Execute(frame *rtda.StackFrame) {
+	stack := frame.OperandStack()
+	v2 := stack.PopDouble()
+	if v2 == 0 {
+		panic("java.lang.ArithmeticException: / by zero.")
+	}
+	v1 := stack.PopDouble()
+	res := math.Mod(v1, v2)
+	stack.PushDouble(res)
 }
