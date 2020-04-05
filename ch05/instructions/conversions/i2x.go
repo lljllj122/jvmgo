@@ -12,7 +12,7 @@ type I2B struct {
 func (inst *I2B) Execute(frame *rtda.StackFrame) {
 	stack := frame.OperandStack()
 	i := stack.PopInt()
-	// sign-extended to an int
+	// truncate and sign-extended to an int
 	b := int32(int8(i))
 	stack.PushInt(b)
 }
