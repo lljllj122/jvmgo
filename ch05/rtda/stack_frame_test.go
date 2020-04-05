@@ -7,7 +7,7 @@ import (
 )
 
 func TestStackFrameCreation(t *testing.T) {
-	frame := NewStackFrame(10, 10)
+	frame := NewStackFrame(nil, 10, 10)
 	assert.NotNil(t, frame)
 	assert.NotEmpty(t, frame.localVars)
 	assert.NotNil(t, frame.operandStack)

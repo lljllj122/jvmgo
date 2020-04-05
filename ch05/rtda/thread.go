@@ -8,6 +8,14 @@ type Thread struct {
 	stack *JvmStack
 }
 
+func (thread *Thread) Pc() int {
+	return thread.pc
+}
+
+func (thread *Thread) SetPc(pc int) {
+	thread.pc = pc
+}
+
 func NewThread() *Thread {
 	return &Thread{
 		// TODO: Make the stack size configurable

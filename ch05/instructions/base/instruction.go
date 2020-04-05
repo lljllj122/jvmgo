@@ -23,6 +23,8 @@ func (ins *NoOperandInstruction) FetchOperands(reader *BytecodeReader) {
 BranchInstruction - A branch is an instruction in a computer program that can cause a
 computer to begin executing a different instruction sequence and thus deviate from its
 default behavior of executing instructions in order.
+
+Used in IF<cond> instructions
 */
 type BranchInstruction struct {
 	Offset int16

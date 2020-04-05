@@ -16,8 +16,8 @@ func TestThreadCreation(t *testing.T) {
 func TestThreadOperation(t *testing.T) {
 	thread := NewThread()
 
-	frame1 := NewStackFrame(10, 10)
-	frame2 := NewStackFrame(10, 10)
+	frame1 := NewStackFrame(thread, 10, 10)
+	frame2 := NewStackFrame(thread,10, 10)
 
 	thread.PushFrame(frame1)
 	assert.Equal(t, frame1, thread.TopFrame())

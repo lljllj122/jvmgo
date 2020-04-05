@@ -16,8 +16,8 @@ func TestJvmStackCreation(t *testing.T) {
 func TestJvmStackOperation(t *testing.T) {
 	stack := newJvmStack(10)
 
-	frame1 := NewStackFrame(5, 5)
-	frame2 := NewStackFrame(5, 5)
+	frame1 := NewStackFrame(nil,5, 5)
+	frame2 := NewStackFrame(nil,5, 5)
 
 	stack.push(frame1)
 	assert.Equal(t, frame1, stack.top())
@@ -34,8 +34,8 @@ func TestJvmStackOperation(t *testing.T) {
 
 func TestJvmStackPanic(t *testing.T) {
 	stack := newJvmStack(1)
-	frame1 := NewStackFrame(5, 5)
-	frame2 := NewStackFrame(5, 5)
+	frame1 := NewStackFrame(nil,5, 5)
+	frame2 := NewStackFrame(nil,5, 5)
 
 	stack.push(frame1)
 
