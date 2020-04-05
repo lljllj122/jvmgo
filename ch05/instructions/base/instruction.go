@@ -9,6 +9,9 @@ type Instruction interface {
 	Execute(frame *rtda.StackFrame)
 }
 
+/*
+NoOperandInstruction - An instruction that executes directly on OpStack and LocalVars
+*/
 type NoOperandInstruction struct {
 }
 
