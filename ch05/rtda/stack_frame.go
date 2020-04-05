@@ -13,7 +13,7 @@ type StackFrame struct {
 	nextPc       int
 }
 
-func NewStackFrame(thread *Thread, maxLocals, maxStack uint8) *StackFrame {
+func NewStackFrame(thread *Thread, maxLocals, maxStack uint) *StackFrame {
 	return &StackFrame{
 		localVars:    newLocalVars(maxLocals),
 		operandStack: newOperandStack(maxStack),
