@@ -14,7 +14,7 @@ OpStack:
 
 result is calculated by shifting value1 left by s bit positions
 s is the value of the low 5 bits of value2.
- */
+*/
 type ISHL struct {
 	base.NoOperandInstruction
 }
@@ -62,7 +62,7 @@ OpStack:
 
 result is calculated by shifting value1 right by s bit positions, with zero extension
 s is the value of the low 5 bits of value2.
- */
+*/
 type IUSHR struct {
 	base.NoOperandInstruction
 }

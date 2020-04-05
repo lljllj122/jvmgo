@@ -8,7 +8,7 @@ import (
 /*
 IINC - Increment local variable by a constant
 No change on OpStack
- */
+*/
 type IINC struct {
 	// an index into the local variable array of the current frame
 	Index uint8
