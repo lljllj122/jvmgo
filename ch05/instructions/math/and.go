@@ -10,7 +10,7 @@ type IAND struct {
 	base.NoOperandInstruction
 }
 
-func (self *IAND) Execute(frame *rtda.StackFrame) {
+func (inst *IAND) Execute(frame *rtda.StackFrame) {
 	stack := frame.OperandStack()
 	v2 := stack.PopInt()
 	v1 := stack.PopInt()
@@ -23,7 +23,7 @@ type LAND struct {
 	base.NoOperandInstruction
 }
 
-func (self *LAND) Execute(frame *rtda.StackFrame) {
+func (inst *LAND) Execute(frame *rtda.StackFrame) {
 	stack := frame.OperandStack()
 	v2 := stack.PopLong()
 	v1 := stack.PopLong()

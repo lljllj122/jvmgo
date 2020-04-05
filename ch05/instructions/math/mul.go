@@ -8,7 +8,7 @@ type DMUL struct {
 	base.NoOperandInstruction
 }
 
-func (self *DMUL) Execute(frame *rtda.StackFrame) {
+func (inst *DMUL) Execute(frame *rtda.StackFrame) {
 	stack := frame.OperandStack()
 	v2 := stack.PopDouble()
 	v1 := stack.PopDouble()
@@ -21,7 +21,7 @@ type FMUL struct {
 	base.NoOperandInstruction
 }
 
-func (self *FMUL) Execute(frame *rtda.StackFrame) {
+func (inst *FMUL) Execute(frame *rtda.StackFrame) {
 	stack := frame.OperandStack()
 	v2 := stack.PopFloat()
 	v1 := stack.PopFloat()
@@ -34,7 +34,7 @@ type IMUL struct {
 	base.NoOperandInstruction
 }
 
-func (self *IMUL) Execute(frame *rtda.StackFrame) {
+func (inst *IMUL) Execute(frame *rtda.StackFrame) {
 	stack := frame.OperandStack()
 	v2 := stack.PopInt()
 	v1 := stack.PopInt()
@@ -47,7 +47,7 @@ type LMUL struct {
 	base.NoOperandInstruction
 }
 
-func (self *LMUL) Execute(frame *rtda.StackFrame) {
+func (inst *LMUL) Execute(frame *rtda.StackFrame) {
 	stack := frame.OperandStack()
 	v2 := stack.PopLong()
 	v1 := stack.PopLong()

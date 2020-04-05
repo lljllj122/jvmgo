@@ -8,7 +8,7 @@ type DDIV struct {
 	base.NoOperandInstruction
 }
 
-func (self *DDIV) Execute(frame *rtda.StackFrame) {
+func (inst *DDIV) Execute(frame *rtda.StackFrame) {
 	stack := frame.OperandStack()
 	v2 := stack.PopDouble()
 	v1 := stack.PopDouble()
@@ -21,7 +21,7 @@ type FDIV struct {
 	base.NoOperandInstruction
 }
 
-func (self *FDIV) Execute(frame *rtda.StackFrame) {
+func (inst *FDIV) Execute(frame *rtda.StackFrame) {
 	stack := frame.OperandStack()
 	v2 := stack.PopFloat()
 	v1 := stack.PopFloat()
@@ -34,7 +34,7 @@ type IDIV struct {
 	base.NoOperandInstruction
 }
 
-func (self *IDIV) Execute(frame *rtda.StackFrame) {
+func (inst *IDIV) Execute(frame *rtda.StackFrame) {
 	stack := frame.OperandStack()
 	v2 := stack.PopInt()
 	v1 := stack.PopInt()
@@ -51,7 +51,7 @@ type LDIV struct {
 	base.NoOperandInstruction
 }
 
-func (self *LDIV) Execute(frame *rtda.StackFrame) {
+func (inst *LDIV) Execute(frame *rtda.StackFrame) {
 	stack := frame.OperandStack()
 	v2 := stack.PopLong()
 	v1 := stack.PopLong()

@@ -8,7 +8,7 @@ type DSUB struct {
 	base.NoOperandInstruction
 }
 
-func (self *DSUB) Execute(frame *rtda.StackFrame) {
+func (inst *DSUB) Execute(frame *rtda.StackFrame) {
 	stack := frame.OperandStack()
 	v2 := stack.PopDouble()
 	v1 := stack.PopDouble()
@@ -21,7 +21,7 @@ type FSUB struct {
 	base.NoOperandInstruction
 }
 
-func (self *FSUB) Execute(frame *rtda.StackFrame) {
+func (inst *FSUB) Execute(frame *rtda.StackFrame) {
 	stack := frame.OperandStack()
 	v2 := stack.PopFloat()
 	v1 := stack.PopFloat()
@@ -34,7 +34,7 @@ type ISUB struct {
 	base.NoOperandInstruction
 }
 
-func (self *ISUB) Execute(frame *rtda.StackFrame) {
+func (inst *ISUB) Execute(frame *rtda.StackFrame) {
 	stack := frame.OperandStack()
 	v2 := stack.PopInt()
 	v1 := stack.PopInt()
@@ -47,7 +47,7 @@ type LSUB struct {
 	base.NoOperandInstruction
 }
 
-func (self *LSUB) Execute(frame *rtda.StackFrame) {
+func (inst *LSUB) Execute(frame *rtda.StackFrame) {
 	stack := frame.OperandStack()
 	v2 := stack.PopLong()
 	v1 := stack.PopLong()
