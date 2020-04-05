@@ -6,7 +6,7 @@ import (
 )
 
 // Load Int variable from LocalVar table and push to opstack
-func _iload(frame *rtda.StackFrame, index uint8) {
+func _iload(frame *rtda.StackFrame, index uint) {
 	val := frame.LocalVars().GetInt(index)
 	frame.OperandStack().PushInt(val)
 }

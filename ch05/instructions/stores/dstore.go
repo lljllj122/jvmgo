@@ -6,7 +6,7 @@ import (
 )
 
 // Get Double variable from opstack and Store into local variable
-func _dstore(frame *rtda.StackFrame, index uint8) {
+func _dstore(frame *rtda.StackFrame, index uint) {
 	val := frame.OperandStack().PopDouble()
 	frame.LocalVars().SetDouble(index, val)
 }

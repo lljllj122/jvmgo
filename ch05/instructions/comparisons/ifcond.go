@@ -16,4 +16,3 @@ func (inst *IFEQ) Execute(frame *rtda.StackFrame) {
 		base.Branch(frame, inst.Offset)
 	}
 }
-

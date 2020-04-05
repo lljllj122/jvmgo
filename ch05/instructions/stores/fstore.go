@@ -6,7 +6,7 @@ import (
 )
 
 // Get Float variable from opstack and Store into local variable
-func _fstore(frame *rtda.StackFrame, index uint8) {
+func _fstore(frame *rtda.StackFrame, index uint) {
 	val := frame.OperandStack().PopFloat()
 	frame.LocalVars().SetFloat(index, val)
 }

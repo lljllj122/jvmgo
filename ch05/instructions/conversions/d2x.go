@@ -20,7 +20,7 @@ func (inst *D2F) Execute(frame *rtda.StackFrame) {
 
 /*
 D2I - convert stack top double value to int
- */
+*/
 type D2I struct {
 	base.NoOperandInstruction
 }

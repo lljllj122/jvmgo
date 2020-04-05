@@ -7,7 +7,7 @@ import (
 
 /*
 LCMP - Compare top 2 long values and push a int value onto stack
- */
+*/
 type LCMP struct {
 	base.NoOperandInstruction
 }

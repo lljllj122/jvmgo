@@ -27,6 +27,7 @@ default behavior of executing instructions in order.
 Used in IF<cond> instructions
 */
 type BranchInstruction struct {
+	// Offset is the operand of branch instruction
 	Offset int
 }
 

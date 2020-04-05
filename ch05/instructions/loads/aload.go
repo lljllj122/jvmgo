@@ -6,7 +6,7 @@ import (
 )
 
 // Load a Reference from LocalVar table and push to opstack
-func _aload(frame *rtda.StackFrame, index uint8) {
+func _aload(frame *rtda.StackFrame, index uint) {
 	val := frame.LocalVars().GetRef(index)
 	frame.OperandStack().PushRef(val)
 }

@@ -5,7 +5,7 @@ import (
 	"jvmgo/ch05/rtda"
 )
 
-// BIPUSH - get a byte value from operand, sign-extended to an int value, and push to opstack
+// BIPUSH - get a byte value from operand, sign-extended to an int value, and push to OpStack
 type BIPUSH struct {
 	val byte
 }
@@ -19,7 +19,7 @@ func (inst *BIPUSH) Execute(frame *rtda.StackFrame) {
 	frame.OperandStack().PushInt(i)
 }
 
-// SIPUSH - get a short value from operand, sign-extended to int value, and push to opstack
+// SIPUSH - get a short value from operand, sign-extended to int value, and push to OpStack
 type SIPUSH struct {
 	val int16
 }

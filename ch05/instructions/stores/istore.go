@@ -6,7 +6,7 @@ import (
 )
 
 // Get Int variable from opstack and Store into local variable
-func _istore(frame *rtda.StackFrame, index uint8) {
+func _istore(frame *rtda.StackFrame, index uint) {
 	val := frame.OperandStack().PopInt()
 	frame.LocalVars().SetInt(index, val)
 }

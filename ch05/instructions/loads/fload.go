@@ -6,7 +6,7 @@ import (
 )
 
 // Load Float variable from LocalVar table and push to opstack
-func _fload(frame *rtda.StackFrame, index uint8) {
+func _fload(frame *rtda.StackFrame, index uint) {
 	val := frame.LocalVars().GetFloat(index)
 	frame.OperandStack().PushFloat(val)
 }

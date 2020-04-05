@@ -6,7 +6,7 @@ import (
 )
 
 // Get Long variable from opstack and Store into local variable
-func _lstore(frame *rtda.StackFrame, index uint8) {
+func _lstore(frame *rtda.StackFrame, index uint) {
 	val := frame.OperandStack().PopLong()
 	frame.LocalVars().SetLong(index, val)
 }
