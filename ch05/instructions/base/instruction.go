@@ -27,20 +27,20 @@ default behavior of executing instructions in order.
 Used in IF<cond> instructions
 */
 type BranchInstruction struct {
-	Offset int16
+	Offset int
 }
 
 func (ins *BranchInstruction) FetchOperands(reader *BytecodeReader) {
-	ins.Offset = int16(reader.ReadUint32())
+	ins.Offset = int(reader.ReadUint16())
 }
 
 // Index8Instruction - used to load local variable by index
 type Index8Instruction struct {
-	Index uint8
+	Index uint
 }
 
 func (ins *Index8Instruction) FetchOperands(reader *BytecodeReader) {
-	ins.Index = uint8(reader.ReadByte())
+	ins.Index = uint(reader.ReadByte())
 }
 
 /*
@@ -48,9 +48,9 @@ Index16Instruction - used to load operand from Constant pool.
 constant_pool_count is represented by 2 bytes
 */
 type Index16Instruction struct {
-	Index uint16
+	Index uint
 }
 
 func (ins *Index16Instruction) FetchOperands(reader *BytecodeReader) {
-	ins.Index = uint16(reader.ReadUint16())
+	ins.Index = uint(reader.ReadUint16())
 }

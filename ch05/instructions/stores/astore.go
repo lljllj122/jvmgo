@@ -6,7 +6,7 @@ import (
 )
 
 // Get a Reference from opstack and Store into local variable
-func _astore(frame *rtda.StackFrame, index uint8) {
+func _astore(frame *rtda.StackFrame, index uint) {
 	val := frame.OperandStack().PopRef()
 	frame.LocalVars().SetRef(index, val)
 }
