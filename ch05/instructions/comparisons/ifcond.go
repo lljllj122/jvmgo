@@ -6,9 +6,20 @@ import (
 )
 
 /*
-IFEQ - If Equal
 Load Operand Offset (2 bytes)
 Pop x from OpStack and compare with 0
+Branch if comparison succeeds
+*/
+func _executeBranch1i(frame *rtda.StackFrame, offset int, condition func(val int32) bool) {
+	val := frame.OperandStack().PopInt()
+	if condition(val) {
+		base.Branch(frame, offset)
+	}
+}
+
+/*
+IFEQ - If Equal
+
 if x == 0, proceeds at the offset from the address of the opcode of this instruction (branch)
 */
 type IFEQ struct {
@@ -16,7 +27,7 @@ type IFEQ struct {
 }
 
 func (inst *IFEQ) Execute(frame *rtda.StackFrame) {
-	_executeBranch(frame, inst.Offset, func(val int32) bool {
+	_executeBranch1i(frame, inst.Offset, func(val int32) bool {
 		return val == 0
 	})
 }
@@ -27,7 +38,7 @@ type IFNE struct {
 }
 
 func (inst *IFNE) Execute(frame *rtda.StackFrame) {
-	_executeBranch(frame, inst.Offset, func(val int32) bool {
+	_executeBranch1i(frame, inst.Offset, func(val int32) bool {
 		return val != 0
 	})
 }
@@ -38,7 +49,7 @@ type IFLT struct {
 }
 
 func (inst *IFLT) Execute(frame *rtda.StackFrame) {
-	_executeBranch(frame, inst.Offset, func(val int32) bool {
+	_executeBranch1i(frame, inst.Offset, func(val int32) bool {
 		return val < 0
 	})
 }
@@ -49,7 +60,7 @@ type IFLE struct {
 }
 
 func (inst *IFLE) Execute(frame *rtda.StackFrame) {
-	_executeBranch(frame, inst.Offset, func(val int32) bool {
+	_executeBranch1i(frame, inst.Offset, func(val int32) bool {
 		return val <= 0
 	})
 }
@@ -60,7 +71,7 @@ type IFGT struct {
 }
 
 func (inst *IFGT) Execute(frame *rtda.StackFrame) {
-	_executeBranch(frame, inst.Offset, func(val int32) bool {
+	_executeBranch1i(frame, inst.Offset, func(val int32) bool {
 		return val > 0
 	})
 }
@@ -70,14 +81,7 @@ type IFGE struct {
 }
 
 func (inst *IFGE) Execute(frame *rtda.StackFrame) {
-	_executeBranch(frame, inst.Offset, func(val int32) bool {
+	_executeBranch1i(frame, inst.Offset, func(val int32) bool {
 		return val >= 0
 	})
-}
-
-func _executeBranch(frame *rtda.StackFrame, offset int, condition func(val int32) bool) {
-	val := frame.OperandStack().PopInt()
-	if condition(val) {
-		base.Branch(frame, offset)
-	}
 }
