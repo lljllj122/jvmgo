@@ -24,13 +24,14 @@ BranchInstruction - A branch is an instruction in a computer program that can ca
 computer to begin executing a different instruction sequence and thus deviate from its
 default behavior of executing instructions in order.
 
-Used in IF<cond> instructions
+Used in IF_COND and IF_CMP instructions
 */
 type BranchInstruction struct {
 	// Offset is the operand of branch instruction
 	Offset int
 }
 
+// Branch offset is 16-bit
 func (ins *BranchInstruction) FetchOperands(reader *BytecodeReader) {
 	ins.Offset = int(reader.ReadUint16())
 }

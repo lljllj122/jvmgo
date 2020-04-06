@@ -25,7 +25,7 @@ type SIPUSH struct {
 }
 
 func (inst *SIPUSH) FetchOperands(reader *base.BytecodeReader) {
-	inst.val = reader.ReadInt16()
+	inst.val = int16(reader.ReadUint16())
 }
 
 func (inst *SIPUSH) Execute(frame *rtda.StackFrame) {
