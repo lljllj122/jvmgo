@@ -28,12 +28,14 @@ Used in IF_COND and IF_CMP instructions
 */
 type BranchInstruction struct {
 	// Offset is the operand of branch instruction
+	// Most branch instructions have 16-bit offset.
+	// goto_w instruction has 32-bit offset
 	Offset int
 }
 
-// Branch offset is 16-bit
 func (ins *BranchInstruction) FetchOperands(reader *BytecodeReader) {
-	ins.Offset = int(reader.ReadUint16())
+	// Branch offset is read as 16-bit format
+	ins.Offset = int(reader.ReadInt16())
 }
 
 // Index8Instruction - used to load local variable by index

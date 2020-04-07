@@ -21,10 +21,17 @@ func main() {
 func startJvm(cmd *Cmd) {
 	classPath := classpath.Parse(cmd.XjreOption, cmd.classPathOption)
 	fmt.Printf("class:%s	classpath:%s	args:%v\n", cmd.class, cmd.classPathOption, cmd.args)
-	// convert the dot formatted class name to the slah formatted relative path
+	// convert the dot formatted class name to the slash formatted relative path
 	className := strings.Replace(cmd.class, ".", "/", -1)
 	classFile := loadClass(className, classPath)
 	printClassInfo(classFile)
+
+	mainMethod := getMainMethod(classFile)
+	if mainMethod != nil {
+		interpret(mainMethod)
+	} else {
+		fmt.Printf("Main method not found in class :%v\n", cmd.class)
+	}
 }
 
 func loadClass(className string, classPath *classpath.ClassPath) *classfile.ClassFile {
@@ -37,6 +44,15 @@ func loadClass(className string, classPath *classpath.ClassPath) *classfile.Clas
 		panic(err)
 	}
 	return classFile
+}
+
+func getMainMethod(cf *classfile.ClassFile) *classfile.MemberInfo {
+	for _, methodInfo := range cf.Methods() {
+		if methodInfo.Name() == "main" && methodInfo.Descriptor() == "([Ljava/lang/String;)V" {
+			return methodInfo
+		}
+	}
+	return nil
 }
 
 func printClassInfo(classFile *classfile.ClassFile) {
