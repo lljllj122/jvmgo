@@ -38,6 +38,7 @@ func (ins *BranchInstruction) FetchOperands(reader *BytecodeReader) {
 
 // Index8Instruction - used to load local variable by index
 type Index8Instruction struct {
+	// use uint here because it can be extended by WIDE instruction
 	Index uint
 }
 

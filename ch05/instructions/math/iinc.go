@@ -11,14 +11,14 @@ No change on OpStack
 */
 type IINC struct {
 	// an index into the local variable array of the current frame
-	Index uint8
+	Index uint
 	// an immediate signed byte
-	Const byte
+	Const int32
 }
 
 func (inst *IINC) FetchOperands(reader *base.BytecodeReader) {
-	inst.Index = reader.ReadByte()
-	inst.Const = reader.ReadByte()
+	inst.Index = uint(reader.ReadByte())
+	inst.Const = int32(reader.ReadByte())
 }
 
 func (inst *IINC) Execute(frame *rtda.StackFrame) {

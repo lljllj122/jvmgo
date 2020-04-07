@@ -15,7 +15,7 @@ type LSTORE struct {
 	base.Index8Instruction
 }
 
-func (inst *LSTORE) Store(frame *rtda.StackFrame) {
+func (inst *LSTORE) Execute(frame *rtda.StackFrame) {
 	_lstore(frame, inst.Index)
 }
 
@@ -23,7 +23,7 @@ type LSTORE_0 struct {
 	base.NoOperandInstruction
 }
 
-func (inst *LSTORE_0) Store(frame *rtda.StackFrame) {
+func (inst *LSTORE_0) Execute(frame *rtda.StackFrame) {
 	_lstore(frame, 0)
 }
 
@@ -31,7 +31,7 @@ type LSTORE_1 struct {
 	base.NoOperandInstruction
 }
 
-func (inst *LSTORE_1) Store(frame *rtda.StackFrame) {
+func (inst *LSTORE_1) Execute(frame *rtda.StackFrame) {
 	_lstore(frame, 1)
 }
 
@@ -39,7 +39,7 @@ type LSTORE_2 struct {
 	base.NoOperandInstruction
 }
 
-func (inst *LSTORE_2) Store(frame *rtda.StackFrame) {
+func (inst *LSTORE_2) Execute(frame *rtda.StackFrame) {
 	_lstore(frame, 2)
 }
 
@@ -47,6 +47,6 @@ type LSTORE_3 struct {
 	base.NoOperandInstruction
 }
 
-func (inst *LSTORE_3) Store(frame *rtda.StackFrame) {
+func (inst *LSTORE_3) Execute(frame *rtda.StackFrame) {
 	_lstore(frame, 3)
 }
