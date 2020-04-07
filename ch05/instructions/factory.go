@@ -115,10 +115,10 @@ var (
 	lrem    = &LREM{}
 	frem    = &FREM{}
 	drem    = &DREM{}
-	//ineg    = &INEG{}
-	//lneg    = &LNEG{}
-	//fneg    = &FNEG{}
-	//dneg    = &DNEG{}
+	ineg    = &INEG{}
+	lneg    = &LNEG{}
+	fneg    = &FNEG{}
+	dneg    = &DNEG{}
 	ishl    = &ISHL{}
 	lshl    = &LSHL{}
 	ishr    = &ISHR{}
@@ -398,14 +398,14 @@ func NewInstruction(opcode byte) base.Instruction {
 		return frem
 	case 0x73:
 		return drem
-	//case 0x74:
-	//	return ineg
-	//case 0x75:
-	//	return lneg
-	//case 0x76:
-	//	return fneg
-	//case 0x77:
-	//	return dneg
+	case 0x74:
+		return ineg
+	case 0x75:
+		return lneg
+	case 0x76:
+		return fneg
+	case 0x77:
+		return dneg
 	case 0x78:
 		return ishl
 	case 0x79:
