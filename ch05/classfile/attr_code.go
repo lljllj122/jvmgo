@@ -22,11 +22,35 @@ Exists in method_info
 */
 type CodeAttribute struct {
 	constantPool   *ConstantPool
-	maxStack       u2     // the max depth of stack
-	maxLocals      u2     // the max size of local variables
+	maxStack       uint16     // the max depth of stack
+	maxLocals      uint16     // the max size of local variables
 	code           []byte // the byte code of method
 	exceptionTable []*ExceptionTableEntry
 	attributes     []AttributeInfo
+}
+
+func (attr *CodeAttribute) MaxStack() uint {
+	return uint(attr.maxStack)
+}
+
+func (attr *CodeAttribute) Code() []byte {
+	return attr.code
+}
+
+func (attr *CodeAttribute) ExceptionTable() []*ExceptionTableEntry {
+	return attr.exceptionTable
+}
+
+func (attr *CodeAttribute) Attributes() []AttributeInfo {
+	return attr.attributes
+}
+
+func (attr *CodeAttribute) MaxLocals() uint {
+	return uint(attr.maxLocals)
+}
+
+func (attr *CodeAttribute) ConstantPool() *ConstantPool {
+	return attr.constantPool
 }
 
 func (attr *CodeAttribute) readInfo(reader *ClassReader) {

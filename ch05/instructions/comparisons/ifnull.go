@@ -16,11 +16,11 @@ func (inst *IFNULL) Execute(frame *rtda.StackFrame) {
 	}
 }
 
-type IFNONULL struct {
+type IFNONNULL struct {
 	base.BranchInstruction
 }
 
-func (inst *IFNONULL) Execute(frame *rtda.StackFrame) {
+func (inst *IFNONNULL) Execute(frame *rtda.StackFrame) {
 	ref := frame.OperandStack().PopRef()
 	if ref != nil {
 		base.Branch(frame, inst.Offset)

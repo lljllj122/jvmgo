@@ -18,66 +18,66 @@ func _executeBranch2i(frame *rtda.StackFrame, offset int, condition func(v1 int3
 }
 
 // v1 == v2
-type IF_ICOMPEQ struct {
+type IF_ICMPEQ struct {
 	base.BranchInstruction
 }
 
-func (inst *IF_ICOMPEQ) Execute(frame *rtda.StackFrame) {
+func (inst *IF_ICMPEQ) Execute(frame *rtda.StackFrame) {
 	_executeBranch2i(frame, inst.Offset, func(v1 int32, v2 int32) bool {
 		return v1 == v2
 	})
 }
 
 // v1 != v2
-type IF_ICOMPNE struct {
+type IF_ICMPNE struct {
 	base.BranchInstruction
 }
 
-func (inst *IF_ICOMPNE) Execute(frame *rtda.StackFrame) {
+func (inst *IF_ICMPNE) Execute(frame *rtda.StackFrame) {
 	_executeBranch2i(frame, inst.Offset, func(v1 int32, v2 int32) bool {
 		return v1 != v2
 	})
 }
 
 // v1 < v2
-type IF_ICOMPLT struct {
+type IF_ICMPLT struct {
 	base.BranchInstruction
 }
 
-func (inst *IF_ICOMPLT) Execute(frame *rtda.StackFrame) {
+func (inst *IF_ICMPLT) Execute(frame *rtda.StackFrame) {
 	_executeBranch2i(frame, inst.Offset, func(v1 int32, v2 int32) bool {
 		return v1 < v2
 	})
 }
 
 // v1 <= v2
-type IF_ICOMPLE struct {
+type IF_ICMPLE struct {
 	base.BranchInstruction
 }
 
-func (inst *IF_ICOMPLE) Execute(frame *rtda.StackFrame) {
+func (inst *IF_ICMPLE) Execute(frame *rtda.StackFrame) {
 	_executeBranch2i(frame, inst.Offset, func(v1 int32, v2 int32) bool {
 		return v1 <= v2
 	})
 }
 
 // v1 > v2
-type IF_ICOMPGT struct {
+type IF_ICMPGT struct {
 	base.BranchInstruction
 }
 
-func (inst *IF_ICOMPGT) Execute(frame *rtda.StackFrame) {
+func (inst *IF_ICMPGT) Execute(frame *rtda.StackFrame) {
 	_executeBranch2i(frame, inst.Offset, func(v1 int32, v2 int32) bool {
 		return v1 > v2
 	})
 }
 
 // v1 >= v2
-type IF_ICOMPGE struct {
+type IF_ICMPGE struct {
 	base.BranchInstruction
 }
 
-func (inst *IF_ICOMPGE) Execute(frame *rtda.StackFrame) {
+func (inst *IF_ICMPGE) Execute(frame *rtda.StackFrame) {
 	_executeBranch2i(frame, inst.Offset, func(v1 int32, v2 int32) bool {
 		return v1 > v2
 	})

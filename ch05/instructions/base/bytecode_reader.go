@@ -5,6 +5,10 @@ type BytecodeReader struct {
 	pc   int
 }
 
+func (reader *BytecodeReader) Pc() int {
+	return reader.pc
+}
+
 func (reader *BytecodeReader) Reset(code []byte, pc int) {
 	reader.pc = pc
 	reader.code = code

@@ -10,7 +10,7 @@ type StackFrame struct {
 	localVars    LocalVars
 	operandStack *OperandStack
 	thread       *Thread
-	nextPc       int // size of int in Golang is at least 32-bit
+	nextPc       int
 }
 
 func NewStackFrame(thread *Thread, maxLocals, maxStack uint) *StackFrame {
@@ -21,22 +21,22 @@ func NewStackFrame(thread *Thread, maxLocals, maxStack uint) *StackFrame {
 	}
 }
 
-func (stack *StackFrame) Thread() *Thread {
-	return stack.thread
+func (frame *StackFrame) Thread() *Thread {
+	return frame.thread
 }
 
-func (stack *StackFrame) OperandStack() *OperandStack {
-	return stack.operandStack
+func (frame *StackFrame) OperandStack() *OperandStack {
+	return frame.operandStack
 }
 
-func (stack *StackFrame) LocalVars() LocalVars {
-	return stack.localVars
+func (frame *StackFrame) LocalVars() LocalVars {
+	return frame.localVars
 }
 
-func (stack *StackFrame) NextPc() int {
-	return stack.nextPc
+func (frame *StackFrame) NextPc() int {
+	return frame.nextPc
 }
 
-func (stack *StackFrame) SetNextPc(nextPc int) {
-	stack.nextPc = nextPc
+func (frame *StackFrame) SetNextPc(nextPc int) {
+	frame.nextPc = nextPc
 }
