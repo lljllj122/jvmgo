@@ -72,6 +72,7 @@ func (inst *WIDE) FetchOperands(reader *base.BytecodeReader) {
 
 }
 
+// execute the widened instruction
 func (inst *WIDE) Execute(frame *rtda.StackFrame) {
-	panic("implement me")
+	inst.widenInstruction.Execute(frame)
 }

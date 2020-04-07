@@ -10,7 +10,7 @@ type StackFrame struct {
 	localVars    LocalVars
 	operandStack *OperandStack
 	thread       *Thread
-	nextPc       int
+	nextPc       int // size of int in Golang is at least 32-bit
 }
 
 func NewStackFrame(thread *Thread, maxLocals, maxStack uint) *StackFrame {

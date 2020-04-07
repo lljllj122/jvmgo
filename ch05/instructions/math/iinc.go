@@ -12,7 +12,7 @@ No change on OpStack
 type IINC struct {
 	// an index into the local variable array of the current frame
 	Index uint
-	// an immediate signed byte
+	// an immediate signed byte, it will be sign-extended to an int
 	Const int32
 }
 
@@ -27,6 +27,6 @@ func (inst *IINC) Execute(frame *rtda.StackFrame) {
 	val := localVars.GetInt(inst.Index)
 	// value const is first sign-extended to an int
 	// and then the local variable at index is incremented by that amount.
-	val = val + int32(inst.Const)
+	val = val + inst.Const
 	localVars.SetInt(inst.Index, val)
 }
