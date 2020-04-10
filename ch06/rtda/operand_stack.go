@@ -1,6 +1,9 @@
 package rtda
 
-import "math"
+import (
+	"jvmgo/ch06/rtda/heap"
+	"math"
+)
 
 /*
 The maximum depth of the operand stack of a frame is determined at compile-time.
@@ -74,12 +77,12 @@ func (stack *OperandStack) PopDouble() float64 {
 	return math.Float64frombits(uint64(highBits)<<32 | uint64(lowBits))
 }
 
-func (stack *OperandStack) PushRef(ref *Object) {
+func (stack *OperandStack) PushRef(ref *heap.Object) {
 	stack.slots[stack.size].ref = ref
 	stack.size++
 }
 
-func (stack *OperandStack) PopRef() (ref *Object) {
+func (stack *OperandStack) PopRef() (ref *heap.Object) {
 	stack.size--
 	ref = stack.slots[stack.size].ref
 	stack.slots[stack.size].ref = nil

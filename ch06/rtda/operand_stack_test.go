@@ -1,6 +1,7 @@
 package rtda
 
 import (
+	"jvmgo/ch06/rtda/heap"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -17,7 +18,7 @@ func TestOpStack(t *testing.T) {
 	var floatV float32 = 1.0
 	var longV int64 = 11111
 	var doubleV float64 = 1.000001
-	var objectRef *Object = &Object{}
+	var objectRef *heap.Object = &heap.Object{}
 
 	opStack.PushInt(intV)
 	opStack.PushFloat(floatV)
@@ -38,7 +39,7 @@ func TestOpStackOrder2(t *testing.T) {
 	var floatV float32 = 1.0
 	var longV int64 = 11111
 	var doubleV float64 = 1.000001
-	var objectRef *Object = &Object{}
+	var objectRef *heap.Object = &heap.Object{}
 
 	opStack.PushInt(intV)
 	opStack.PushLong(longV)

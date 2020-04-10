@@ -1,8 +1,8 @@
 package constants
 
 import (
-	"jvmgo/ch05/instructions/base"
-	"jvmgo/ch05/rtda"
+	"jvmgo/ch06/instructions/base"
+	"jvmgo/ch06/rtda"
 )
 
 // BIPUSH - get a byte value from operand, sign-extended to an int value, and push to OpStack

@@ -1,6 +1,6 @@
 package base
 
-import "jvmgo/ch05/rtda"
+import "jvmgo/ch06/rtda"
 
 func Branch(frame *rtda.StackFrame, offset int) {
 	pc := frame.Thread().Pc()
