@@ -17,6 +17,7 @@ func newMethods(class *Class, classFileMethods []*classfile.MemberInfo) []*Metho
 		methods[i].loadMemberInfo(classFileMethod)
 		methods[i].loadCodeAttribute(classFileMethod)
 	}
+	return methods
 }
 
 func (m *Method) loadCodeAttribute(classFileMethod *classfile.MemberInfo) {

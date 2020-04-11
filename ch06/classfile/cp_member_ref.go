@@ -51,6 +51,6 @@ type ConstantMethodRefInfo struct {
 	ConstantMemberRefInfo
 }
 
-type InterfaceMethodReInfo struct {
+type ConstantInterfaceMethodReInfo struct {
 	ConstantMemberRefInfo
 }

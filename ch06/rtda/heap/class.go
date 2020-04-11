@@ -10,9 +10,9 @@ type Class struct {
 	name           string
 	superClassName string
 	interfaceNames []string
-	// constantPool   *ConstantPool
-	// fields
-	// method
+	constantPool   *ConstantPool
+	fields         []*Field
+	methods        []*Method
 	// loader
 	superClass        *Class
 	interfaces        []*Class
