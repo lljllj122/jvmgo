@@ -21,8 +21,8 @@ func readConstantPool(reader *ClassReader) *ConstantPool {
 	return pool
 }
 
-func (pool *ConstantPool) Size() int {
-	return len(pool.constantInfos)
+func (pool *ConstantPool) Size() uint {
+	return uint(len(pool.constantInfos))
 }
 
 // get a ConstantInfo item by index from the pool

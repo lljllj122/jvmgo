@@ -13,7 +13,7 @@ type ConstantPool struct {
 	consts []Constant
 }
 
-func (cp *ConstantPool) GetConstant(i int) Constant {
+func (cp *ConstantPool) GetConstant(i uint) Constant {
 	if c := cp.consts[i]; c != nil {
 		return c
 	}
@@ -28,7 +28,7 @@ func newConstantPool(class *Class, cfCp *classfile.ConstantPool) *ConstantPool {
 		class:  class,
 		consts: consts,
 	}
-	for i := 1; i < cpCount; i++ {
+	for i := uint(1); i < cpCount; i++ {
 		cpInfo := runtimeConstantPool.GetConstant(i)
 		switch cpInfo.(type) {
 		case *classfile.ConstantIntegerInfo:

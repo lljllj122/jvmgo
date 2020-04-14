@@ -80,10 +80,74 @@ func verify(class *Class) {
 }
 
 func prepare(class *Class) {
-
+	calcInstanceFieldSlotIds(class)
+	calcStaticFieldSlotIds(class)
+	allocAndInitStaticVars(class)
 }
 
 func calcInstanceFieldSlotIds(class *Class) {
 	slotId := uint(0)
+	// leave slots for instance fields from super class
+	if class.superClass != nil{
+		slotId = class.superClass.instanceSlotCount
+	}
+	for _, field := range class.fields {
+		if !field.IsStatic() {
+			field.slotId = slotId
+			slotId++
+			if field.isLongOrDouble() {
+				slotId++
+			}
+		}
+	}
+	class.instanceSlotCount = slotId
+}
 
+func calcStaticFieldSlotIds(class *Class) {
+	slotId := uint(0)
+	for _, field := range class.fields {
+		if field.IsStatic() {
+			field.slotId = slotId
+			slotId++
+			if field.isLongOrDouble() {
+				slotId++
+			}
+		}
+	}
+	class.staticSlotCount = slotId
+}
+
+func allocAndInitStaticVars(class *Class) {
+	class.staticVars = newSlots(class.staticSlotCount)
+	for _, field := range class.fields {
+		if field.IsStatic() && field.IsFinal() {
+			initStaticFinalVar(class, field)
+		}
+	}
+}
+
+// static final values are stored in constant pool
+func initStaticFinalVar(class *Class, field *Field) {
+	staticVars := class.staticVars
+	constantPool := class.constantPool
+	cpIndex := field.constValueIndex
+	slotId := field.slotId
+	if cpIndex > 0 {
+		switch field.descriptor {
+		case "Z", "B", "C", "S", "I":
+			val := constantPool.GetConstant(cpIndex).(int32)
+			staticVars.SetInt(slotId, val)
+		case "J":
+			val := constantPool.GetConstant(cpIndex).(int64)
+			staticVars.SetLong(slotId, val)
+		case "F":
+			val := constantPool.GetConstant(cpIndex).(float32)
+			staticVars.SetFloat(slotId, val)
+		case "D":
+			val := constantPool.GetConstant(cpIndex).(float64)
+			staticVars.SetDouble(slotId, val)
+		case "Ljava/lang/String;":
+			// implement later
+		}
+	}
 }

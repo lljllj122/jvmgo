@@ -10,7 +10,7 @@ type Slot struct {
 
 type Slots []Slot
 
-func newStaticVars(varCount uint) Slots {
+func newSlots(varCount uint) Slots {
 	if varCount > 0 {
 		return make([]Slot, varCount)
 	}
