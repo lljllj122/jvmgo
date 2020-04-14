@@ -27,3 +27,22 @@ func (m *Method) loadCodeAttribute(classFileMethod *classfile.MemberInfo) {
 		m.byteCode = codeAttr.Code()
 	}
 }
+
+func (m *Method) IsSynchronized() bool {
+	return 0 != m.accessFlag&ACC_SYNCHRONIZED
+}
+func (m *Method) IsBridge() bool {
+	return 0 != m.accessFlag&ACC_BRIDGE
+}
+func (m *Method) IsVarargs() bool {
+	return 0 != m.accessFlag&ACC_VARARGS
+}
+func (m *Method) IsNative() bool {
+	return 0 != m.accessFlag&ACC_NATIVE
+}
+func (m *Method) IsAbstract() bool {
+	return 0 != m.accessFlag&ACC_ABSTRACT
+}
+func (m *Method) IsStrict() bool {
+	return 0 != m.accessFlag&ACC_STRICT
+}

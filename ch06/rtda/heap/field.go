@@ -4,6 +4,7 @@ import "jvmgo/ch06/classfile"
 
 type Field struct {
 	ClassMember
+	slotId uint
 }
 
 func newFields(class *Class, classFileFields []*classfile.MemberInfo) []*Field {
@@ -14,6 +15,5 @@ func newFields(class *Class, classFileFields []*classfile.MemberInfo) []*Field {
 		fields[i].class = class
 		fields[i].loadMemberInfo(cff)
 	}
-
 	return fields
 }

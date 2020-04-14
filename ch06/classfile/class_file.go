@@ -64,7 +64,7 @@ func (cf *ClassFile) ConstantPool() *ConstantPool {
 	return cf.constantPool
 }
 
-func (cf *ClassFile) AccessFlags() u2 {
+func (cf *ClassFile) AccessFlag() u2 {
 	return cf.accessFlags
 }
 
@@ -126,8 +126,8 @@ func (cf *ClassFile) readAndCheckVersion(reader *ClassReader) {
 	panic(fmt.Sprintf("java.lang.UnsupportedClassVersionError : %v:%v", cf.MajorVersion(), cf.MinorVersion()))
 }
 
-// ParseClass : Parse the input byte data into ClassFile entity
-func ParseClass(classData []byte) (classFile *ClassFile, err error) {
+// ParseClassFile : Parse the input byte data into ClassFile entity
+func ParseClassFile(classData []byte) (classFile *ClassFile, err error) {
 	// defer func() {
 	// 	if r := recover(); r != nil {
 	// 		var ok bool

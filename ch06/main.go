@@ -39,7 +39,7 @@ func loadClass(className string, classPath *classpath.ClassPath) *classfile.Clas
 	if err != nil {
 		panic(err)
 	}
-	classFile, err := classfile.ParseClass(classData)
+	classFile, err := classfile.ParseClassFile(classData)
 	if err != nil {
 		panic(err)
 	}
@@ -58,7 +58,7 @@ func getMainMethod(cf *classfile.ClassFile) *classfile.MemberInfo {
 func printClassInfo(classFile *classfile.ClassFile) {
 	fmt.Printf("version: %v.%v\n", classFile.MajorVersion(), classFile.MinorVersion())
 	fmt.Printf("constants count: %v\n", classFile.ConstantPool().Size())
-	fmt.Printf("access flags: %v\n", classFile.AccessFlags())
+	fmt.Printf("access flags: %v\n", classFile.AccessFlag())
 	fmt.Printf("this class: %v\n", classFile.ClassName())
 	fmt.Printf("super class: %v\n", classFile.SuperClassName())
 	fmt.Printf("interfaces: %v\n", classFile.InterfaceNames())
